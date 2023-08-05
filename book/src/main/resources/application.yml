@@ -1,0 +1,23 @@
+server:
+  port: 9191
+spring:
+  datasource:
+    url: jdbc:mysql://sql.freedb.tech:3306/freedb_cafeAndRestaurant
+    username: freedb_merim
+    password: V8B8&aQybz@v9qX
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: micurug@gmail.com
+    password: promijenikadbudesradio
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
