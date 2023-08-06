@@ -14,4 +14,6 @@ public interface IUserService {
     void saveUserVerificationToken(User user, String verificationToken);
 
     String validateToken(String theToken);
+
+    VerificationToken generateNewVerificationToken(String oldToken);
 }
