@@ -1,14 +1,15 @@
 package api.library.user;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import api.library.role.Role;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.annotations.NaturalId;
+
+import java.util.Collection;
+import java.util.HashSet;
 
 @Getter // lombok anotacija koja generise getere za sva polja
 @Setter
@@ -24,6 +25,10 @@ public class User {
     @NaturalId(mutable = true) // ovim se sprecava da se email ponavlja (jedan user - jedan email)
     private String email;
     private String password;
-    private String role;
+    @ManyToMany(fetch = FetchType.EAGER,
+            cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH})
+    @JoinTable(name = "user_roles", joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id")) // medjutabela zbog veze vise na vise
+    private Collection<Role> roles = new HashSet<>();
     private boolean isEnabled = false; // koristen za verifikaciju
 }

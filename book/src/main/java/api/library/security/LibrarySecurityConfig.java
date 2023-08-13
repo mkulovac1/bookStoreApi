@@ -30,7 +30,8 @@ public class LibrarySecurityConfig {
             "/users/**",
             "/books/book/{id}",
             "/books/all",
-            "/auth/**"
+            "/auth/**",
+            "/roles/**"
     };
 
     private final UserRegistrationDetailsService userDetailsService;

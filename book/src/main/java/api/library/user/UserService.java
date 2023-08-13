@@ -5,16 +5,15 @@ import api.library.exception.UserNotFoundException;
 import api.library.registration.RegistrationRequest;
 import api.library.registration.token.VerificationToken;
 import api.library.registration.token.VerificationTokenRepository;
+import api.library.role.Role;
+import api.library.role.RoleRepository;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.util.Calendar;
-import java.util.List;
-import java.util.Optional;
-import java.util.UUID;
+import java.util.*;
 
 @Slf4j
 @Service
@@ -23,6 +22,7 @@ public class UserService implements IUserService {
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
     private final VerificationTokenRepository verificationTokenRepository;
+    private final RoleRepository roleRepository;
 
     @Override
     public List<User> getUsers() {
@@ -40,7 +40,8 @@ public class UserService implements IUserService {
         newUser.setLastName(request.lastName());
         newUser.setEmail(request.email());
         newUser.setPassword(passwordEncoder.encode(request.password()));
-        newUser.setRole(request.role());
+        Role role = roleRepository.findByName("USER").get();
+        newUser.setRoles(Collections.singletonList(role));
         return userRepository.save(newUser);
     }
 
@@ -93,6 +94,8 @@ public class UserService implements IUserService {
         }
         user.setPassword(passwordEncoder.encode(user.getPassword())); // mora se enkodirati pw
         user.setEnabled(true); // admin ga odmah aktivira ?!
+        Role role = roleRepository.findByName("USER").get();
+        user.setRoles(Collections.singletonList(role));
         return userRepository.save(user);
     }
 
@@ -113,7 +116,7 @@ public class UserService implements IUserService {
         userToUpdate.setFirstName(user.getFirstName());
         userToUpdate.setLastName(user.getLastName());
         userToUpdate.setPassword(passwordEncoder.encode(user.getPassword()));
-        userToUpdate.setRole(user.getRole());
+        userToUpdate.setRoles(user.getRoles());
         return userRepository.save(userToUpdate);
     }
 
