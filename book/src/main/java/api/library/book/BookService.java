@@ -2,8 +2,12 @@ package api.library.book;
 
 import api.library.exception.BookNotFoundException;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
+import org.springframework.data.domain.Pageable;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -46,24 +50,36 @@ public class BookService implements IBookService {
         return bookRepository.saveAll(books);
     }
 
-    public List<Book> getSortedBooks(String sortingCriteria, String sortingOrder) {
-        if(sortingCriteria.equals("title") && sortingOrder.equals("asc")) {
-            return bookRepository.findAllByOrderByTitleAsc();
-        } else if(sortingCriteria.equals("title") && sortingOrder.equals("desc")) {
-            return bookRepository.findAllByOrderByTitleDesc();
-        } else if(sortingCriteria.equals("author") && sortingOrder.equals("asc")) {
-            return bookRepository.findAllByOrderByAuthorAsc();
-        } else if(sortingCriteria.equals("author") && sortingOrder.equals("desc")) {
-            return bookRepository.findAllByOrderByAuthorDesc();
-        } else if(sortingCriteria.equals("genre") && sortingOrder.equals("asc")) {
-            return bookRepository.findAllByOrderByGenreAsc();
-        } else if(sortingCriteria.equals("genre") && sortingOrder.equals("desc")) {
-            return bookRepository.findAllByOrderByGenreDesc();
+    public List<Book> getSortedBooks(String sortingCriteria, String sortingOrder, int pageNumber, int pageSize) {
+        // List<Book> sortedBooks = null;
+
+        Pageable pageable;
+
+        if (sortingCriteria.equals("title") && sortingOrder.equals("asc")) {
+            pageable = PageRequest.of(pageNumber, pageSize, Sort.by(Sort.Direction.ASC, "title"));
+        } else if (sortingCriteria.equals("title") && sortingOrder.equals("desc")) {
+            pageable = PageRequest.of(pageNumber, pageSize, Sort.by(Sort.Direction.DESC, "title"));
+        } else if (sortingCriteria.equals("author") && sortingOrder.equals("asc")) {
+            pageable = PageRequest.of(pageNumber, pageSize, Sort.by(Sort.Direction.ASC, "author"));
+        } else if (sortingCriteria.equals("author") && sortingOrder.equals("desc")) {
+            pageable = PageRequest.of(pageNumber, pageSize, Sort.by(Sort.Direction.DESC, "author"));
+        } else if (sortingCriteria.equals("genre") && sortingOrder.equals("asc")) {
+            pageable = PageRequest.of(pageNumber, pageSize, Sort.by(Sort.Direction.ASC, "genre"));
+        } else if (sortingCriteria.equals("genre") && sortingOrder.equals("desc")) {
+            pageable = PageRequest.of(pageNumber, pageSize, Sort.by(Sort.Direction.DESC, "genre"));
         } else {
-            // throw new IllegalArgumentException("Invalid sorting criteria or sorting order.");
-            return null;
+            throw new IllegalArgumentException("Invalid sorting criteria or sorting order.");
         }
+
+        Page<Book> bookPage = bookRepository.findAll(pageable);
+
+        // sortedBooks = bookPage.getContent();
+
+        return bookPage.getContent();
+
+        // return sortedBooks;
     }
+
 
     public List<Book> getFilteredBooks(String titleFilter, String authorFilter, String genreFilter) {
             Specification<Book> spec = (root, query, criteriaBuilder) -> {

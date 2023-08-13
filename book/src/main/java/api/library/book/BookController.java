@@ -1,6 +1,7 @@
 package api.library.book;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -8,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Optional;
 
+@Slf4j
 @RestController
 @RequestMapping("/books")
 @RequiredArgsConstructor
@@ -45,18 +47,25 @@ public class BookController {
     }
 
     @GetMapping("/sort")
-    public ResponseEntity<List<Book>> getSortedBooks(@RequestParam(name = "criteria") String criteria, @RequestParam(name = "order") String order) {
-        List<Book> sortedBooks = bookService.getSortedBooks(criteria, order);
+    public ResponseEntity<List<Book>> getSortedBooks(@RequestParam(name = "criteria") String criteria,
+                                                     @RequestParam(name = "order") String order,
+                                                     @RequestParam(name = "page", defaultValue = "0") int pageNumber,
+                                                     @RequestParam(name = "size", defaultValue = "10") int pageSize) {
+        /* List<Book> sortedBooks = bookService.getSortedBooks(criteria, order);
         if(sortedBooks == null) {
             return ResponseEntity.badRequest().build();
-        }
-        return ResponseEntity.ok(bookService.getSortedBooks(criteria, order));
+        }*/
+        log.info("Criteria: " + criteria + ", order: " + order + ", page: " + pageNumber + ", size: " + pageSize);
+        List<Book> b = bookService.getSortedBooks(criteria, order, pageNumber, pageSize);
+        log.info("Vrati koliko knjiga: " + b.size());
+        return ResponseEntity.ok(bookService.getSortedBooks(criteria, order, pageNumber, pageSize));
     }
 
     @GetMapping("/filter")
     public ResponseEntity<List<Book>> getFilteredBooks(@RequestParam(name = "title", required = false) String title,
                                                        @RequestParam(name = "author", required = false) String author,
                                                        @RequestParam(name = "genre", required = false) String genre) {
+
         return ResponseEntity.ok(bookService.getFilteredBooks(title, author, genre));
     }
 
