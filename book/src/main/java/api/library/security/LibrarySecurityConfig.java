@@ -22,7 +22,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 public class LibrarySecurityConfig {
 
     private static final String[] SECURED_URL = {
-            "/books/**"
+
     };
 
     private static final String[] UNSECURED_URL = {
@@ -31,7 +31,8 @@ public class LibrarySecurityConfig {
             "/books/book/{id}",
             "/books/all",
             "/auth/**",
-            "/roles/**"
+            "/roles/**",
+            "books/**"
     };
 
     private final UserRegistrationDetailsService userDetailsService;
