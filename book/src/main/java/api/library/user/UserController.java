@@ -1,5 +1,6 @@
 package api.library.user;
 
+import api.library.user.password.ResetPassword;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -44,8 +45,18 @@ public class UserController {
         return ResponseEntity.ok(userService.update(user));
     }
 
-    @PutMapping("activate")
+    @PutMapping("/activate")
     public ResponseEntity<User> activate(@RequestBody User user){
         return ResponseEntity.ok(userService.activate(user));
+    }
+
+    @PutMapping("/deactivate")
+    public ResponseEntity<User> deactivate(@RequestBody User user){
+        return ResponseEntity.ok(userService.deactivate(user));
+    }
+
+    @PutMapping("/updatePassword")
+    public ResponseEntity<String> updatePassword(@RequestBody ResetPassword resetPassword){
+        return ResponseEntity.ok(userService.updatePassword(resetPassword));
     }
 }

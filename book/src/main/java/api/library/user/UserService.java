@@ -7,6 +7,7 @@ import api.library.registration.token.VerificationToken;
 import api.library.registration.token.VerificationTokenRepository;
 import api.library.role.Role;
 import api.library.role.RoleRepository;
+import api.library.user.password.ResetPassword;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -125,5 +126,28 @@ public class UserService implements IUserService {
         User userToActivate = userRepository.findByEmail(user.getEmail()).orElseThrow(() -> new UserNotFoundException("User with email " + user.getEmail() + " not found"));
         userToActivate.setEnabled(true);
         return userRepository.save(userToActivate);
+    }
+
+    @Override
+    public User deactivate(User user) {
+        User userToDeactivate = userRepository.findByEmail(user.getEmail()).orElseThrow(() -> new UserNotFoundException("User with email " + user.getEmail() + " not found"));
+        userToDeactivate.setEnabled(false);
+        return userRepository.save(userToDeactivate);
+    }
+
+    @Override
+    public String updatePassword(ResetPassword resetPassword) {
+        if(!validateOldPassword(resetPassword)) {
+            return "Old password is not correct!";
+        }
+        User userToUpdate = userRepository.findByEmail(resetPassword.getEmail()).orElseThrow(() -> new UserNotFoundException("User with email " + resetPassword.getEmail() + " not found"));
+        userToUpdate.setPassword(passwordEncoder.encode(resetPassword.getNewPassword()));
+        userRepository.save(userToUpdate);
+        return "Password is changed!";
+    }
+
+    public boolean validateOldPassword(ResetPassword resetPassword) {
+        User userToValidate = userRepository.findByEmail(resetPassword.getEmail()).orElseThrow(() -> new UserNotFoundException("User with email " + resetPassword.getEmail() + " not found"));
+        return passwordEncoder.matches(resetPassword.getOldPassword(), userToValidate.getPassword());
     }
 }

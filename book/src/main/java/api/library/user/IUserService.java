@@ -2,6 +2,7 @@ package api.library.user;
 
 import api.library.registration.RegistrationRequest;
 import api.library.registration.token.VerificationToken;
+import api.library.user.password.ResetPassword;
 
 import java.util.List;
 import java.util.Optional;
@@ -26,4 +27,8 @@ public interface IUserService {
     User update(User user);
 
     User activate(User user);
+
+    User deactivate(User user);
+
+    String updatePassword(ResetPassword resetPassword);
 }
