@@ -37,7 +37,7 @@ public class UserService implements IUserService {
             throw new UserAlreadyExistsException("User with e-mail " + request.email() + " already exists");
         }
         var newUser = new User();
-        newUser.setFirstName(request.firstName()); // kod record-a se ne mora korisiti getter vec samo .imeAtributa()
+        newUser.setFirstName(request.firstName()); // you don't need to use getter in records instead just attribte name => .nameOfAttribute()
         newUser.setLastName(request.lastName());
         newUser.setEmail(request.email());
         newUser.setPassword(passwordEncoder.encode(request.password()));
@@ -73,7 +73,7 @@ public class UserService implements IUserService {
         }
 
         user.setEnabled(true);
-        userRepository.save(user); // moraju se sacuvati promjene u bazi
+        userRepository.save(user); // you need to save changes in databes
 
         return "ok";
     }
@@ -83,7 +83,6 @@ public class UserService implements IUserService {
         var tokenExpirationTime = new VerificationToken();
         verificationToken.setToken(UUID.randomUUID().toString());
         verificationToken.setExpirationTime(tokenExpirationTime.getTokenExpirationTime());
-        log.info("IZMIJENI TOKEN I HOCE DA GA SACUVA");
         return verificationTokenRepository.save(verificationToken);
     }
 
@@ -93,8 +92,8 @@ public class UserService implements IUserService {
         if(checkUser.isPresent()) {
             throw new UserAlreadyExistsException("User with e-mail " + user.getEmail() + " already exists");
         }
-        user.setPassword(passwordEncoder.encode(user.getPassword())); // mora se enkodirati pw
-        user.setEnabled(true); // admin ga odmah aktivira ?!
+        user.setPassword(passwordEncoder.encode(user.getPassword())); // password neeeds to be encoded
+        user.setEnabled(true); // admin activates user here
         Role role = roleRepository.findByName("USER").get();
         user.setRoles(Collections.singletonList(role));
         return userRepository.save(user);

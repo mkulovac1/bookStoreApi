@@ -34,7 +34,7 @@ public class RoleService implements IRoleService {
 
     @Override
     public void deleteRole(Long roleId) {
-        // prvo se mora provjeriti koji useri imaju ovu rolu pa onda izbrisati te usere ili sta vec raditi s njima
+        // first you need to remove all users from this role and then delete the role because of links in database
         // roleRepository.deleteById(roleId);
         this.removeAllUsersFromRole(roleId);
         roleRepository.deleteById(roleId);

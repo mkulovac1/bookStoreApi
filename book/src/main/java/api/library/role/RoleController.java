@@ -31,7 +31,7 @@ public class RoleController {
     }
 
     @PostMapping("/removeAllUsersFromRole/{id}")
-    public Role removeAllUsersFromRole(@PathVariable("id") Long roleId) { // mora ici "id" jer var imena roleId, da je bila id ne bi moralo jer je gore u postmapppingu naziv "id"
+    public Role removeAllUsersFromRole(@PathVariable("id") Long roleId) { // need "id" annotation cause variable is named as roleId, if it was id it would work without it.
         return roleService.removeAllUsersFromRole(roleId);
     }
 
@@ -44,7 +44,4 @@ public class RoleController {
     public User removeUserToRole(@RequestParam("userId") Long userId, @RequestParam("roleId") Long roleId) {
         return roleService.assignUserToRole(userId, roleId);
     }
-
-
-
 }

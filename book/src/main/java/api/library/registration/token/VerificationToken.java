@@ -23,7 +23,7 @@ public class VerificationToken {
 
     @OneToOne
     @JoinColumn(name = "user_id")
-    private User user; // strani kljuc
+    private User user; // foreign key
 
 
 
@@ -40,9 +40,9 @@ public class VerificationToken {
      }
 
      public Date getTokenExpirationTime() {
-            /* Date now = new Date();
-            long expirationTimeInMilliseconds = 1000 * 60 * 60 * 24; // 24 hours
-            return new Date(now.getTime() + expirationTimeInMilliseconds); */
+         /* Date now = new Date();
+         long expirationTimeInMilliseconds = 1000 * 60 * 60 * 24; // 24 hours
+         return new Date(now.getTime() + expirationTimeInMilliseconds); */
          Calendar calendar = Calendar.getInstance();
          calendar.setTimeInMillis(new Date().getTime());
          calendar.add(Calendar.MINUTE, EXP_TIME);

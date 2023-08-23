@@ -26,7 +26,7 @@ public class JWTService {
     private static final String secretKey = "C2BD4C82D3DBD80C3CE3E43C23294B142DFAF3A28827BFE311D722C3A423FFEE4CBB3E4466901C3B4F7A0AB58283EDA5A3BFFDE51439D63405B14CDF772342FE"; // wRa=tltriSWa#rlsethIfU=eZuprePRaThO*p5TowlVukUMi9lthAwr*-lD*$fab
 
     public String getGeneratedToken(String userName) {
-        Map<String, Objects> claims = new HashMap<>(); // sve ono sto se treba znati o useru, json objekat
+        Map<String, Objects> claims = new HashMap<>(); // information about user
         return generateTokenForUser(claims, userName);
     }
 

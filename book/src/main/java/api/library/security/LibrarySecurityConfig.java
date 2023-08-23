@@ -22,7 +22,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 public class LibrarySecurityConfig {
 
     private static final String[] SECURED_URL = {
-
+            // no urls here cause we are testing with postman
     };
 
     private static final String[] UNSECURED_URL = {
@@ -81,7 +81,7 @@ public class LibrarySecurityConfig {
                 .build(); */
     }
 
-    @Bean // vazno je da se ovo bean-uje jer ce se koristiti u UserRegistrationService, INJEKTOVANJE
+    @Bean // important to use bean annotation cause you inject it in other classes
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }

@@ -22,28 +22,28 @@ public class Role {
     private Long id;
     @NaturalId
     private String name;
-    @JsonIgnore // da ne bi doslo do overflow-a jer i user dodaje rolove i obrnuto u isto vrijeme
-    @ManyToMany(mappedBy = "roles") // jer smo u user definisali fetchiranje i napravili medju-tabelu tako da je dovoljno
-    private Collection<User> users = new HashSet<>(); // ovo smo mogli u konstruktoru da inicijalizujemo inace ne bi radilo
+    @JsonIgnore // preventing overflow cause user is adding role and role is adding user in the same time - circle
+    @ManyToMany(mappedBy = "roles") // because we defined fetching in user and made middle table so it is enough
+    private Collection<User> users = new HashSet<>(); // we could initialize this in constructor otherwise it would not work (null)
 
     public Role(String name) {
         this.name = name;
     }
 
-    public void removeAllUsersFromRole() { // svi useri vezani za ovu ulogu se brisu
+    public void removeAllUsersFromRole() { // every user for this role is removed
         if(users != null) {
             List<User> usersRole = users.stream().toList();
             usersRole.forEach(this::removeUserFromRole);
         }
     }
 
-    public void removeUserFromRole(User user) { // jedan user se brise iz uloge
-        user.getRoles().remove(this); // sve uloge brisemo za tog usera
+    public void removeUserFromRole(User user) { // one user is deleted from role
+        user.getRoles().remove(this); // all roles are deleted for this user
         users.remove(user);
     }
 
-    public void assignUserToRole(User user) { // jedan user se dodaje u ulogu
-        user.getRoles().add(this); // dodajemo ulogu useru
+    public void assignUserToRole(User user) { // adding one user to the role
+        user.getRoles().add(this); // adding role to user
         users.add(user);
     }
 

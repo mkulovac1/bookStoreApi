@@ -85,8 +85,8 @@ public class BookService implements IBookService {
             Specification<Book> spec = (root, query, criteriaBuilder) -> {
                 List<Predicate> predicates = new ArrayList<>();
 
-                // Predikati su uslovi koji se primenjuju na upit kako bi se filtrirali rezultati.
-                // Koristi se za kombinovano filtriranje
+                // Predicates are condition which are applied to the query in order to filter the results.
+                // It is used for combined filtering.
 
                 if (titleFilter != null && !titleFilter.isEmpty()) {
                     predicates.add(criteriaBuilder.like(

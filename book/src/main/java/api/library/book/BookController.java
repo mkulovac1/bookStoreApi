@@ -55,9 +55,8 @@ public class BookController {
         if(sortedBooks == null) {
             return ResponseEntity.badRequest().build();
         }*/
-        log.info("Criteria: " + criteria + ", order: " + order + ", page: " + pageNumber + ", size: " + pageSize);
         List<Book> b = bookService.getSortedBooks(criteria, order, pageNumber, pageSize);
-        log.info("Vrati koliko knjiga: " + b.size());
+
         return ResponseEntity.ok(bookService.getSortedBooks(criteria, order, pageNumber, pageSize));
     }
 
@@ -68,5 +67,4 @@ public class BookController {
 
         return ResponseEntity.ok(bookService.getFilteredBooks(title, author, genre));
     }
-
 }

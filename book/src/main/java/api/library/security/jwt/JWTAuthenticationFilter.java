@@ -35,8 +35,8 @@ public class JWTAuthenticationFilter extends OncePerRequestFilter {
                 userName = jwtService.extractUserNameFromToken(jwtToken);
             }
 
-            if(userName != null && SecurityContextHolder.getContext().getAuthentication() == null) { // drugi uslov provjera da li je user vec autentifikovan
-                UserDetails userDetails = userDetailsService.loadUserByUsername(userName); // ako ima taj user u bazi onda ga ucitaj u varijablu userDetails
+            if(userName != null && SecurityContextHolder.getContext().getAuthentication() == null) { // did user is authenticated
+                UserDetails userDetails = userDetailsService.loadUserByUsername(userName); // if user exists in database then load him
                 if(jwtService.validateToken(jwtToken, userDetails)) {
                     var authToken = new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
                     authToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));

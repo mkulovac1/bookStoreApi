@@ -11,8 +11,7 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 
 public class UserRegistrationDetailsService implements UserDetailsService {
-    private final UserRepository userRepository; // kad je final bude autowired zbog @RequiredArg..
-
+    private final UserRepository userRepository; // when you use @RequiredArgsConstructor and final, you don't need to use @Autowired
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
         return userRepository.findByEmail(email)

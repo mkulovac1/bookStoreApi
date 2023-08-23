@@ -26,22 +26,22 @@ public class RegistrationController {
     private final RegistrationCompleteEventListener eventListener;
     private final HttpServletRequest servletRequest;
     @PostMapping
-    public String registerUser(@RequestBody RegistrationRequest request, final HttpServletRequest req) { // @RequestBody - ovo je JSON koji se salje iz Postmana
+    public String registerUser(@RequestBody RegistrationRequest request, final HttpServletRequest req) { // @RequestBody - JSON which we are sending from the frontend/Postman
         User user = userService.registerUser(request);
         eventPublisher.publishEvent(new RegistrationCompleteEvent(user, applicationUrl(req)));
         return "Success! Please, check your e-mail to confirm the registration.";
     }
 
     @GetMapping("/verifyEmail")
-    public String verifyEmail(@RequestParam("token") String token) { // requestparam je dio ?token=...
+    public String verifyEmail(@RequestParam("token") String token) { // requestparam is part of ?token=...
         String url = applicationUrl(servletRequest) + "/register/resendRegistrationToken?token=" + token;
-        // log.info("Ovo je taj URL ZA RESEND: "+ url);
         VerificationToken theToken = verificationTokenRepository.findByToken(token);
-        // log.info("Ovdje vrati token?: ", theToken.getId());
+
         if(theToken.getUser().isEnabled())
             return "Your account has already been verified. Please login.";
 
         String result = userService.validateToken(token);
+
         if(result.equalsIgnoreCase("ok")) {
             return "Your account has been verified. Please login.";
         }
@@ -51,21 +51,21 @@ public class RegistrationController {
 
     @GetMapping("/resendRegistrationToken")
     public String resendVerificationToken(@RequestParam("token") String oldToken, final HttpServletRequest req) throws MessagingException, UnsupportedEncodingException {
-        // log.info("STARI TOKEN: " + oldToken);
         VerificationToken verificationToken =  userService.generateNewVerificationToken(oldToken);
         User theUser = verificationToken.getUser();
         resendVerificationTokenEmail(theUser, applicationUrl(req), verificationToken);
+
         return "A new verification link has been sent to your email, please, check to complete your registration";
     }
 
     private void resendVerificationTokenEmail(User newUser, String applicationUrl, VerificationToken token) throws MessagingException, UnsupportedEncodingException {
         String url = applicationUrl + "/register/verifyEmail?token=" + token.getToken();
         eventListener.sendVerificationEmail(url);
+
         log.info("Click the link to verify your registration :  {}", url);
     }
 
     private String applicationUrl(HttpServletRequest req) {
         return "http://" + req.getServerName() + ":" + req.getServerPort() + req.getContextPath();
     }
-
 }
