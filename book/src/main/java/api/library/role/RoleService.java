@@ -89,7 +89,7 @@ public class RoleService implements IRoleService {
     @Override
     public Role removeAllUsersFromRole(Long roleId) {
         Optional<Role> theRole = roleRepository.findById(roleId);
-        theRole.ifPresent(Role::removeAllUsersFromRole); // otkantaj usere za tu ulogu
+        theRole.ifPresent(Role::removeAllUsersFromRole); // delete users from role
         return roleRepository.save(theRole.get());
     }
 }

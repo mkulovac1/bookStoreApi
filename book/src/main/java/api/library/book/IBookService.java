@@ -10,7 +10,7 @@ public interface IBookService {
 
     Book add(Book book);
 
-    Book update(Book book);
+    Book update(Long id, Book book);
 
     void delete(Long id);
 }

@@ -35,8 +35,19 @@ public class BookService implements IBookService {
     }
 
     @Override
-    public Book update(Book book) {
-        return bookRepository.save(book);
+    public Book update(Long id, Book book) {
+        Optional<Book> findBook = bookRepository.findById(id);
+
+        Book newBook = new Book();
+
+        if(findBook.isPresent()) {
+            newBook = findBook.get();
+            newBook.setTitle(book.getTitle());
+            newBook.setAuthor(book.getAuthor());
+            newBook.setGenre(book.getGenre());
+        }
+
+        return bookRepository.save(newBook);
     }
 
     @Override

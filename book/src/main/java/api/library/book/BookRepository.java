@@ -5,7 +5,7 @@ import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 
 import java.util.List;
 
-public interface BookRepository extends JpaRepository<Book, Long>, JpaSpecificationExecutor<Book> { // zbog filtriranja ide ovaj drugi extend
+public interface BookRepository extends JpaRepository<Book, Long>, JpaSpecificationExecutor<Book> { // beacuse of filtering its second interface
     List<Book> findAllByOrderByTitleAsc();
 
     List<Book> findAllByOrderByTitleDesc();
