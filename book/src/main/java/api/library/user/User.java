@@ -11,7 +11,7 @@ import org.hibernate.annotations.NaturalId;
 import java.util.Collection;
 import java.util.HashSet;
 
-@Getter // lombok anotacija koja generise getere za sva polja
+@Getter // lombok annotation for generating all getters field
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
@@ -22,13 +22,13 @@ public class User {
     private Long id;
     private String firstName;
     private String lastName;
-    @NaturalId(mutable = true) // ovim se sprecava da se email ponavlja (jedan user - jedan email)
+    @NaturalId(mutable = true) // preventing reapiting email (one email - one user)
     private String email;
     private String password;
     @ManyToMany(fetch = FetchType.EAGER,
             cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH})
     @JoinTable(name = "user_roles", joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"),
-            inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id")) // medjutabela zbog veze vise na vise
+            inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id")) // joincolumn cause relationship many-2-many
     private Collection<Role> roles = new HashSet<>();
-    private boolean isEnabled = false; // koristen za verifikaciju
+    private boolean isEnabled = false; // using for verification
 }
