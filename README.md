@@ -73,7 +73,7 @@ Here you can see examples of using this API through Postman.
   </a>  
 </p>
 
-<br> <br>
+
 
 **Register:**
 
@@ -83,7 +83,7 @@ Here you can see examples of using this API through Postman.
   </a>  
 </p>
 
-<br> <br>
+
 
 **Verification via e-mail:**
 
@@ -93,7 +93,7 @@ Here you can see examples of using this API through Postman.
   </a>  
 </p>
 
-<br> <br>
+
 
 **Confirming registration:**
 
@@ -103,7 +103,7 @@ Here you can see examples of using this API through Postman.
   </a>  
 </p>
 
-<br> <br>
+
 
 **Late confirmation:**
 
@@ -113,7 +113,7 @@ Here you can see examples of using this API through Postman.
   </a>  
 </p>
 
-<br> <br> <br> <br>
+<br> <br> <br> <br> 
 
 ### LOGIN/AUTH:
 
@@ -127,7 +127,7 @@ Here you can see examples of using this API through Postman.
   </a>  
 </p>
 
-<br> <br>
+
 
 **Decoding JWT:**
 
@@ -137,11 +137,10 @@ Here you can see examples of using this API through Postman.
   </a>  
 </p>
 
-<br> <br> <br> <br>
+<br> <br> <br> <br> 
 
 ### ROLES
 
-**Empty ROLE table:**
 
 <p align="center">
   <a href="">
@@ -149,7 +148,7 @@ Here you can see examples of using this API through Postman.
   </a>  
 </p>
 
-<br> <br>
+
 
 **Creating role:**
 
@@ -159,7 +158,7 @@ Here you can see examples of using this API through Postman.
   </a>  
 </p>
 
-<br> <br>
+
 
 **Creating existing role:**
 
@@ -169,7 +168,7 @@ Here you can see examples of using this API through Postman.
   </a>  
 </p>
 
-<br> <br>
+
 
 **Getting all roles:**
 
@@ -179,7 +178,7 @@ Here you can see examples of using this API through Postman.
   </a>  
 </p>
 
-<br> <br>
+
 
 **Roles in database:**
 
@@ -189,7 +188,7 @@ Here you can see examples of using this API through Postman.
   </a>  
 </p>
 
-<br> <br>
+
 
 **Deleting role:**
 
@@ -199,7 +198,7 @@ Here you can see examples of using this API through Postman.
   </a>  
 </p>
 
-<br> <br>
+
 
 **Database after deleting role:**
 
@@ -209,7 +208,7 @@ Here you can see examples of using this API through Postman.
   </a>  
 </p>
 
-<br> <br> <br> <br>
+<br> <br> <br> <br> 
 
 ### USERS
 
@@ -223,7 +222,7 @@ Here you can see examples of using this API through Postman.
   </a>  
 </p>
 
-<br> <br>
+
 
 **Database after adding user:**
 
@@ -233,7 +232,7 @@ Here you can see examples of using this API through Postman.
   </a>  
 </p>
 
-<br> <br>
+
 
 **All users:**
 
@@ -243,7 +242,7 @@ Here you can see examples of using this API through Postman.
   </a>  
 </p>
 
-<br> <br>
+
 
 **All users in database:**
 
@@ -253,7 +252,7 @@ Here you can see examples of using this API through Postman.
   </a>  
 </p>
 
-<br> <br>
+
 
 **Deleting user:**
 
@@ -263,7 +262,7 @@ Here you can see examples of using this API through Postman.
   </a>  
 </p>
 
-<br> <br>
+
 
 **Database after deleting user:**
 
@@ -273,7 +272,7 @@ Here you can see examples of using this API through Postman.
   </a>  
 </p>
 
-<br> <br>
+
 
 **Activate user:**
 
@@ -283,7 +282,7 @@ Here you can see examples of using this API through Postman.
   </a>  
 </p>
 
-<br> <br>
+
 
 **Activate user - database:**
 
@@ -293,7 +292,7 @@ Here you can see examples of using this API through Postman.
   </a>  
 </p>
 
-<br> <br>
+
 
 **Deactivate user:**
 
@@ -303,7 +302,7 @@ Here you can see examples of using this API through Postman.
   </a>  
 </p>
 
-<br> <br>
+
 
 **Deactivate user - database:**
 
@@ -313,7 +312,7 @@ Here you can see examples of using this API through Postman.
   </a>  
 </p>
 
-<br> <br>
+
 
 **Get user by e-mail:**
 
@@ -323,7 +322,7 @@ Here you can see examples of using this API through Postman.
   </a>  
 </p>
 
-<br> <br>
+
 
 **Change/update user's password:**
 
@@ -333,7 +332,7 @@ Here you can see examples of using this API through Postman.
   </a>  
 </p>
 
-<br> <br> <br> <br>
+<br> <br> <br> <br>  
 
 ### BOOKS
 
@@ -347,7 +346,7 @@ Here you can see examples of using this API through Postman.
   </a>  
 </p>
 
-<br> <br>
+
 
 **Adding multiple books:**
 
@@ -357,7 +356,7 @@ Here you can see examples of using this API through Postman.
   </a>  
 </p>
 
-<br> <br>
+
 
 **Database after adding multiple books:**
 
@@ -367,7 +366,7 @@ Here you can see examples of using this API through Postman.
   </a>  
 </p>
 
-<br> <br>
+
 
 **Adding one book:**
 
@@ -377,7 +376,7 @@ Here you can see examples of using this API through Postman.
   </a>  
 </p>
 
-<br> <br>
+
 
 **Database after adding one book:**
 
@@ -387,7 +386,7 @@ Here you can see examples of using this API through Postman.
   </a>  
 </p>
 
-<br> <br>
+
 
 **Getting all books:**
 
@@ -397,7 +396,7 @@ Here you can see examples of using this API through Postman.
   </a>  
 </p>
 
-<br> <br>
+
 
 **Getting one book:**
 
@@ -407,7 +406,7 @@ Here you can see examples of using this API through Postman.
   </a>  
 </p>
 
-<br> <br>
+
 
 **Database before updating the book:**
 
@@ -417,7 +416,7 @@ Here you can see examples of using this API through Postman.
   </a>  
 </p>
 
-<br> <br>
+
 
 **Updating the book:**
 
@@ -427,7 +426,7 @@ Here you can see examples of using this API through Postman.
   </a>  
 </p>
 
-<br> <br>
+
 
 **Database after updating the book:**
 
@@ -437,7 +436,7 @@ Here you can see examples of using this API through Postman.
   </a>  
 </p>
 
-<br> <br>
+
 
 **Deleting the book:**
 
@@ -447,7 +446,7 @@ Here you can see examples of using this API through Postman.
   </a>  
 </p>
 
-<br> <br>
+
 
 **Filtering books using one criteria**
 
@@ -457,7 +456,7 @@ Here you can see examples of using this API through Postman.
   </a>  
 </p>
 
-<br> <br>
+
 
 **Filtering books using multiple criteria**
 
@@ -467,7 +466,7 @@ Here you can see examples of using this API through Postman.
   </a>  
 </p>
 
-<br> <br>
+
 
 **Sorting books with pagination:**
 
@@ -477,7 +476,7 @@ Here you can see examples of using this API through Postman.
   </a>  
 </p>
 
-<br> <br> <br> <br>
+ 
 
 _For more examples, please refer to the [Documentation](https://github.com/mkulovac1/bookStoreApi/documentation)_
 
