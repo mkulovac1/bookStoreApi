@@ -115,7 +115,7 @@ Here you can see examples of using this API through Postman.
 
 <br> <br> <br> <br> 
 
-### LOGIN/AUTH:
+### LOGIN/AUTH
 
 <br>
 
@@ -141,6 +141,7 @@ Here you can see examples of using this API through Postman.
 
 ### ROLES
 
+<br>
 
 <p align="center">
   <a href="">
